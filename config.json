@@ -1,0 +1,44 @@
+{
+  "name": "Icecast",
+  "version": "1.0.0",
+  "slug": "icecast",
+  "description": "Icecast streaming server with true MP3 passthrough via a from-source-built ezstream, configurable as any number of playlist-backed radio stations",
+  "url": "https://github.com/override80/homeassistant-icecast-addon",
+  "arch": ["amd64"],
+  "startup": "services",
+  "boot": "manual",
+  "init": false,
+  "ports": {
+    "8000/tcp": 8000
+  },
+  "ports_description": {
+    "8000/tcp": "Icecast listener port - one mount per configured station"
+  },
+  "map": ["share:rw", "media:ro"],
+  "options": {
+    "source_password": "changeme",
+    "admin_user": "admin",
+    "admin_password": "changeme",
+    "stations": [
+      {
+        "name": "Example Station",
+        "mount": "example",
+        "description": "An example radio station",
+        "playlist": "/share/playlists/example.txt"
+      }
+    ]
+  },
+  "schema": {
+    "source_password": "password",
+    "admin_user": "str",
+    "admin_password": "password",
+    "stations": [
+      {
+        "name": "str",
+        "mount": "str",
+        "description": "str",
+        "playlist": "str"
+      }
+    ]
+  }
+}
